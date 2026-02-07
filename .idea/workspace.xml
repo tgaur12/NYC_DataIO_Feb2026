@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Fix image creation">
+      <change beforePath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;assignee&quot;: &quot;tgaur12&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tgaur12/NYC_DataIO_Feb2026.git&quot;,
+    &quot;accountId&quot;: &quot;a5a157e3-4143-49e2-8ba6-d7d36e875c09&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="39LhBUzVvOzvpVhUadDTKC8lt89" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.check_file.executor": "Run",
+    "Python.nyc_housing_analysis.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-ca5e2b39c7df-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.308" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="" />
+      <created>1770481122694</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1770481122694</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Created check_file.pu">
+      <option name="closed" value="true" />
+      <created>1770481677563</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1770481677563</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Created check_file.pu">
+      <option name="closed" value="true" />
+      <created>1770481995968</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770481995968</updated>
+    </task>
+    <task id="LOCAL-00003" summary="listed cols, along with empty rows in each col.">
+      <option name="closed" value="true" />
+      <created>1770483353048</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1770483353048</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Filled in empty cols with values. 0 for 'resarea' and 'comarea', and the mode in each col for 'numfloors', 'longitude', and 'latitude'.">
+      <option name="closed" value="true" />
+      <created>1770484619555</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1770484619555</updated>
+    </task>
+    <task id="LOCAL-00005" summary="created graphs">
+      <option name="closed" value="true" />
+      <created>1770486086803</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1770486086803</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fix image creation">
+      <option name="closed" value="true" />
+      <created>1770487200198</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1770487200198</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created check_file.pu" />
+    <MESSAGE value="listed cols, along with empty rows in each col." />
+    <MESSAGE value="Filled in empty cols with values. 0 for 'resarea' and 'comarea', and the mode in each col for 'numfloors', 'longitude', and 'latitude'." />
+    <MESSAGE value="created graphs" />
+    <MESSAGE value="Fix image creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix image creation" />
+  </component>
+</project>
