@@ -30,5 +30,11 @@ useful_col = ["borough_y", "sale_price", "yearbuilt", "lotarea", "bldgarea", "re
               "unitsres", "unitstotal", "numfloors", "latitude", "longitude", "landuse", "bldgclass",
               "building_age"]
 df = df[useful_col]
+
+# fill in empty cols
 print(df.isnull().sum())
 df["resarea"] = df["resarea"].fillna(0)
+df["comarea"] = df["comarea"].fillna(0)
+df["numfloors"] = df["numfloors"].fillna(df["numfloors"].mode()[0])
+df["latitude"] = df["latitude"].fillna(df["latitude"].mode()[0])
+df["longitude"] = df["longitude"].fillna(df["longitude"].mode()[0])
