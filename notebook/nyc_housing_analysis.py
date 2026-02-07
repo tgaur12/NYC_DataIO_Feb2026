@@ -41,3 +41,8 @@ df["comarea"] = df["comarea"].fillna(0)
 df["numfloors"] = df["numfloors"].fillna(df["numfloors"].mode()[0])
 df["latitude"] = df["latitude"].fillna(df["latitude"].mode()[0])
 df["longitude"] = df["longitude"].fillna(df["longitude"].mode()[0])
+
+#creating a table 
+df_table = df[useful_col]
+df_table.to_csv("../nyc_housing_important_columns.csv", index=False)
+print("New CSV file created: nyc_housing_important_columns.csv")
