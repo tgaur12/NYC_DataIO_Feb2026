@@ -33,6 +33,9 @@ df = df[useful_col]
 
 # fill in empty cols
 print(df.isnull().sum())
+df["yearbuilt"] = df["yearbuilt"].fillna(0).astype('int64')
+df["numfloors"] = df["numfloors"].fillna(0).astype('int64')
+df["building_age"] = df["building_age"].fillna(0).astype('int64')
 df["resarea"] = df["resarea"].fillna(0)
 df["comarea"] = df["comarea"].fillna(0)
 df["numfloors"] = df["numfloors"].fillna(df["numfloors"].mode()[0])
