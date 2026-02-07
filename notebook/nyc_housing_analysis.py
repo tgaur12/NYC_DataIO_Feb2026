@@ -34,6 +34,9 @@ df = df[useful_col]
 
 # fill in empty cols
 print(df.isnull().sum())
+df["yearbuilt"] = df["yearbuilt"].fillna(0).astype('int64')
+df["numfloors"] = df["numfloors"].fillna(0).astype('int64')
+df["building_age"] = df["building_age"].fillna(0).astype('int64')
 df["resarea"] = df["resarea"].fillna(0)
 df["comarea"] = df["comarea"].fillna(0)
 df["numfloors"] = df["numfloors"].fillna(df["numfloors"].mode()[0])
@@ -85,3 +88,7 @@ plt.show()
 plt.savefig("../images/avg_price_by_borough.png")
 plt.savefig("../images/price_vs_bldgarea.png")
 plt.savefig("../images/building_age_vs_price.png")
+#creating a table 
+df_table = df[useful_col]
+df_table.to_csv("../nyc_housing_important_columns.csv", index=False)
+print("New CSV file created: nyc_housing_important_columns.csv")
