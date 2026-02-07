@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
+
 
 #Accessing the dataset
 file_path = "../nyc_housing_base.csv"
@@ -88,7 +88,22 @@ plt.show()
 plt.savefig("../images/avg_price_by_borough.png")
 plt.savefig("../images/price_vs_bldgarea.png")
 plt.savefig("../images/building_age_vs_price.png")
+
 #creating a table 
 df_table = df[useful_col]
 df_table.to_csv("../nyc_housing_important_columns.csv", index=False)
 print("New CSV file created: nyc_housing_important_columns.csv")
+
+corr_cols = ["sale_price", "bldgarea", "lotarea", "resarea", "comarea",
+             "unitstotal", "unitsres", "numfloors", "building_age"]
+
+#Correlation analysis
+correlation_result = df[corr_cols].corr()["sale_price"].sort_values(ascending=False)
+# Convert to dataframe
+corr_df = correlation_result.reset_index()
+corr_df.columns = ["feature", "correlation_with_sale_price"]
+
+# Save as CSV
+corr_df.to_csv("../sale_price_correlation.csv", index=False)
+
+print("Correlation results saved as sale_price_correlation.csv")
