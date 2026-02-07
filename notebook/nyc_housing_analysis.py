@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 #Accessing the dataset
 file_path = "../nyc_housing_base.csv"
@@ -19,3 +20,15 @@ print("Dataset loaded successfully!")
 print("Shape:", df.shape)
 
 df.head()
+
+print("\nColumns: \n", df.columns)
+print("\nDataset Info:")
+print(df.info())
+
+# data cleaning
+useful_col = ["borough_y", "sale_price", "yearbuilt", "lotarea", "bldgarea", "resarea", "comarea",
+              "unitsres", "unitstotal", "numfloors", "latitude", "longitude", "landuse", "bldgclass",
+              "building_age"]
+df = df[useful_col]
+print(df.isnull().sum())
+df["resarea"] = df["resarea"].fillna(0)
