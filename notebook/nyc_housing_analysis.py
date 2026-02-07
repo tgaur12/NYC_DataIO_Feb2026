@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
+
 
 #Accessing the dataset
 file_path = "../nyc_housing_base.csv"
@@ -137,3 +137,24 @@ plt.show()
 df_table = df[useful_col]
 df_table.to_csv("../nyc_housing_important_columns.csv", index=False)
 print("New CSV file created: nyc_housing_important_columns.csv")
+
+corr_cols = ["sale_price", "bldgarea", "lotarea", "resarea", "comarea",
+             "unitstotal", "unitsres", "numfloors", "building_age"]
+
+#Correlation analysis
+correlation_result = df[corr_cols].corr()["sale_price"].sort_values(ascending=False)
+# Convert to dataframe
+corr_df = correlation_result.reset_index()
+corr_df.columns = ["feature", "correlation_with_sale_price"]
+
+# Save as CSV
+corr_df.to_csv("../sale_price_correlation.csv", index=False)
+
+print("Correlation results saved as sale_price_correlation.csv")
+
+
+# Create a new feature: price per square foot to better compare property values across different building sizes
+df["price_per_sqft"] = df["sale_price"] / df["bldgarea"]
+
+# Remove extreme outliers in price_per_sqft (top 1%) to avoid skewing analysis and plots
+df = df[df["price_per_sqft"] < df["price_per_sqft"].quantile(0.99)]
