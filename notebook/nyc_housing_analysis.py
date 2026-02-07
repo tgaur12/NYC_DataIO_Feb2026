@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
+
 
 #Accessing the dataset
 file_path = "../nyc_housing_base.csv"
@@ -61,6 +61,13 @@ df["numfloors"] = df["numfloors"].fillna(df["numfloors"].mode()[0])
 df["latitude"] = df["latitude"].fillna(df["latitude"].mode()[0])
 df["longitude"] = df["longitude"].fillna(df["longitude"].mode()[0])
 
+# Remove crazy outliers (top 1% prices, negative areas, impossible ages)
+df = df[(df["sale_price"] > 0) & (df["sale_price"] < 10_000_000)]
+df = df[(df["bldgarea"] > 0) & (df["bldgarea"] < 500_000)]
+df = df[(df["building_age"] >= 0) & (df["building_age"] < 200)]
+df = df.dropna(subset=["latitude", "longitude"])  # Musthave location for map
+
+print(f"After outlier removal: {len(df):,} rows (from {len(df)*1.5:+,} originally)")
 # average price by borough
 
 # group by borough and calculate mean sale price, sorted from lowest to highest
