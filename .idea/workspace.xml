@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Added graphs, fixed positioning, and added saved images" />
+    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Fix image creation">
+      <change beforePath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Tanishka_new_graph" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -118,15 +120,7 @@
       <option name="project" value="LOCAL" />
       <updated>1770487200198</updated>
     </task>
-    <task id="LOCAL-00007" summary="Added graphs, fixed positioning, and added saved images">
-      <option name="closed" value="true" />
-      <created>1770495467007</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1770495467007</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -135,7 +129,6 @@
     <MESSAGE value="Filled in empty cols with values. 0 for 'resarea' and 'comarea', and the mode in each col for 'numfloors', 'longitude', and 'latitude'." />
     <MESSAGE value="created graphs" />
     <MESSAGE value="Fix image creation" />
-    <MESSAGE value="Added graphs, fixed positioning, and added saved images" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added graphs, fixed positioning, and added saved images" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix image creation" />
   </component>
 </project>

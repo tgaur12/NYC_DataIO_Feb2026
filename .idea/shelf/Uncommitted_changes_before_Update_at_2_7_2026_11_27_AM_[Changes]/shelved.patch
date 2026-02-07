@@ -1,0 +1,16 @@
+Index: notebook/check_file.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/notebook/check_file.py b/notebook/check_file.py
+new file mode 100644
+--- /dev/null	(date 1770481514122)
++++ b/notebook/check_file.py	(date 1770481514122)
+@@ -0,0 +1,6 @@
++import os
++
++file_path = "../data/nyc_housing_base.csv"
++
++print("File exists:", os.path.exists(file_path))
++print("File size (bytes):", os.path.getsize(file_path))
