@@ -3,14 +3,13 @@ import os
 import matplotlib.pyplot as plt
 
 #Accessing the dataset
-workspace_folder = "data"
-file_path = os.path.join(workspace_folder, "nyc_housing_base.csv")
+file_path = "../nyc_housing_base.csv"
 
 ## Check if file exists
 if not os.path.exists(file_path):
     raise FileNotFoundError(
         f"Dataset not found at {file_path}. "
-        "Make sure nyc_housing_base.csv is inside the 'data' folder."
+        "Make sure nyc_housing_base.csv is in the project root directory."
     )
 
 # Load CSV
