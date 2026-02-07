@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 
 #Accessing the dataset
 file_path = "../nyc_housing_base.csv"
@@ -42,6 +43,51 @@ df["numfloors"] = df["numfloors"].fillna(df["numfloors"].mode()[0])
 df["latitude"] = df["latitude"].fillna(df["latitude"].mode()[0])
 df["longitude"] = df["longitude"].fillna(df["longitude"].mode()[0])
 
+# average price by borough
+avg_price_borough = df.groupby("borough_y")["sale_price"].mean().sort_values()
+
+print("Average price by borough:", avg_price_borough)
+
+# plts by borough -> helps figure out highest average price and lowest average price
+# based on location
+plt.figure(figsize=(8,5))
+sns.barplot(x=avg_price_borough.index, y=avg_price_borough.values)
+plt.title("Average Housing Price by Borough")
+plt.xlabel("Borough")
+plt.ylabel("Average Housing Price ($)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+# plots price vs property size
+# we use resarea and bldgarea to see if bigger buildings cost more
+plt.figure(figsize=(8,5))
+sns.scatterplot(x="bldgarea", y="sale_price", data=df, alpha=0.3)
+plt.title("Sale Price vs Building Area")
+plt.xlabel("Building Area (sq ft)")
+plt.ylabel("Sale Price ($)")
+# gets rid of extreme outliers
+plt.ylim(0, 5_000_000)
+plt.tight_layout()
+plt.show()
+
+# building age vs sale price
+# newer buildings likely to be more expensive but location would impact this?
+plt.figure(figsize=(8,5))
+sns.scatterplot(x="building_age", y="sale_price", data=df, alpha=0.3)
+plt.title("Sale Price vs Building Age")
+plt.xlabel("Building Age (Years)")
+plt.ylabel("Sale Price ($)")
+plt.ylim(0, 5_000_000)
+plt.tight_layout()
+plt.show()
+
+
+# saves images
+plt.savefig("../images/avg_price_by_borough.png")
+plt.savefig("../images/price_vs_bldgarea.png")
+plt.savefig("../images/building_age_vs_price.png")
 #creating a table 
 df_table = df[useful_col]
 df_table.to_csv("../nyc_housing_important_columns.csv", index=False)
