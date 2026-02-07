@@ -32,3 +32,12 @@ useful_col = ["borough_y", "sale_price", "yearbuilt", "lotarea", "bldgarea", "re
 df = df[useful_col]
 print(df.isnull().sum())
 df["resarea"] = df["resarea"].fillna(0)
+#change the data type of yearbuilt, numfloors, building_age
+df["yearbuilt"] = pd.to_numeric(df["yearbuilt"].fillna(0).astype('int64'))
+df["numfloors"] = pd.to_numeric(df["numfloors"].fillna(0).astype('int64'))
+df["building_age"] = pd.to_numeric(df["building_age"].fillna(0).astype('int64'))
+print(df.dtypes)
+
+
+
+
