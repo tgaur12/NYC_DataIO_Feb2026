@@ -107,3 +107,10 @@ corr_df.columns = ["feature", "correlation_with_sale_price"]
 corr_df.to_csv("../sale_price_correlation.csv", index=False)
 
 print("Correlation results saved as sale_price_correlation.csv")
+
+
+# Create a new feature: price per square foot to better compare property values across different building sizes
+df["price_per_sqft"] = df["sale_price"] / df["bldgarea"]
+
+# Remove extreme outliers in price_per_sqft (top 1%) to avoid skewing analysis and plots
+df = df[df["price_per_sqft"] < df["price_per_sqft"].quantile(0.99)]
