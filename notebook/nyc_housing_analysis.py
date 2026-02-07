@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 
 
 #Accessing the dataset
@@ -76,21 +77,22 @@ avg_price_borough = df.groupby("borough_y")["sale_price"].mean().sort_values()
 print("Average price by borough:", avg_price_borough)
 
 
-# plts by borough -> helps figure out highest average price and lowest average price
-# based on location
+# Average price by borough
+
+# create new figure window
 plt.figure(figsize=(8,5))
 sns.barplot(
-    x=avg_price_borough.index,
-    y=avg_price_borough.values / 1_000_000,  # in millions for readability
-    hue=avg_price_borough.index,
-    palette='viridis',
-    legend=False
+    x=avg_price_borough.index,                  # borough names go on x-axis
+    y=avg_price_borough.values / 1_000_000,     # in millions for readability
+    hue=avg_price_borough.index,                # different color for each borough
+    palette='coolwarm',                          # color scale
+    legend=False                                # don't need legend
 )
 plt.title("Average Housing Price by Borough (Million $)")
 plt.xlabel("Borough")
 plt.ylabel("Average Housing Price ($)")
-plt.xticks(rotation=45)
-plt.tight_layout()
+plt.xticks(rotation=45)                         # rotate names so they don't overlap
+plt.tight_layout()                              # fix spacing automatically
 plt.savefig("../images/avg_price_by_borough.png")
 plt.show()
 
@@ -163,7 +165,7 @@ df["price_per_sqft"] = df["sale_price"] / df["bldgarea"]
 # Remove extreme outliers in price_per_sqft (top 1%) to avoid skewing analysis and plots
 df = df[df["price_per_sqft"] < df["price_per_sqft"].quantile(0.99)]
 
-# Price ber sq foot
+# Price per sq foot
 df["price_per_sqft"] = df["sale_price"] / df["bldgarea"].replace(0, 1)  # Avoid divide-by-zero
 df["price_per_sqft"] = df["price_per_sqft"].clip(0, 5000)  # Cap insane $5000/sqft
 
@@ -171,8 +173,71 @@ pxsqft_borough = df.groupby("borough_y")["price_per_sqft"].mean().sort_values(as
 print("Price per Sq Ft by Borough:\n", pxsqft_borough.round(0))
 
 plt.figure(figsize=(8,5))
-sns.barplot(x=pxsqft_borough.index, y=pxsqft_borough.values, palette="coolwarm")
+sns.barplot(x=pxsqft_borough.index, y=pxsqft_borough.values, hue=pxsqft_borough.index, palette="coolwarm")
 plt.title("Best Value Boroughs ($/sq ft)")
 plt.ylabel("$ per Square Foot")
 plt.savefig("../images/price_per_sqft.png", dpi=300, bbox_inches='tight')
 plt.show()
+
+plt.figure(figsize=(10, 6))
+sns.boxplot(
+    x="borough_y",
+    y="price_per_sqft",
+    data=df,
+    hue="borough_y",
+    palette="coolwarm",
+    order=pxsqft_borough.index  # sort by highest to lowest
+)
+plt.title("Price per Square Foot Distribution by Borough\n(Spread shows variability within each borough)")
+plt.ylabel("$ per Sq Ft")
+plt.xlabel("Borough")
+plt.ylim(0, df["price_per_sqft"].quantile(0.98))  # zoom to remove extreme tails
+plt.tight_layout()
+plt.savefig("../images/price_per_sqft_boxplot.png", dpi=300, bbox_inches='tight')
+plt.show()
+
+# Geographic View: Where in NYC is housing most/least affordable?
+
+# drop any remaining invalid lat/lon
+df_map = df.dropna(subset=['latitude', 'longitude'])
+
+fig = px.scatter_map(
+    df_map,
+    lat="latitude",
+    lon="longitude",
+    color="price_per_sqft",               # color by affordability
+    size="sale_price",                    # bigger = more expensive total sale
+    hover_data=["borough_y", "bldgclass", "building_age"],
+    color_continuous_scale="RdYlBu_r",
+    zoom=9.5,                             # good starting zoom for NYC
+    title="NYC Housing Sales: Price per Sq Ft by Location<br>(Darker = more expensive per sq ft)",
+    height=900
+)
+
+fig.update_layout(
+    margin={"r":0, "t":50, "l":0, "b":0},
+    title_font_size=20
+)
+
+# Save interactive HTML (always works, great for viewing/submission)
+fig.write_html("../images/nyc_housing_map_interactive.html")
+
+# Save static high-res PNG — this will work once kaleido is fixed below
+fig.write_image("../images/nyc_housing_map.png", scale=2)
+
+fig.show()
+
+plt.figure(figsize=(10,8))
+sns.heatmap(
+    df[corr_cols].corr(),
+    annot=True,
+    cmap="coolwarm",
+    fmt=".2f",
+    vmin=-1, vmax=1
+)
+plt.title("What Drives Sale Price? Correlations")
+plt.tight_layout()
+plt.savefig("../images/correlation_heatmap.png", dpi=300)
+plt.show()
+
+

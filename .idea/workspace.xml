@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Fix image creation">
+    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Add image, csv file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/avg_price_by_borough.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/avg_price_by_borough.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,10 +52,11 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.check_file.executor": "Run",
+    "Python.exploratory_analysis.executor": "Run",
     "Python.nyc_housing_analysis.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Tanishka__interactive",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
@@ -120,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770487200198</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add image, csv file">
+      <option name="closed" value="true" />
+      <created>1770495843164</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770495843164</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -129,6 +140,7 @@
     <MESSAGE value="Filled in empty cols with values. 0 for 'resarea' and 'comarea', and the mode in each col for 'numfloors', 'longitude', and 'latitude'." />
     <MESSAGE value="created graphs" />
     <MESSAGE value="Fix image creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix image creation" />
+    <MESSAGE value="Add image, csv file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add image, csv file" />
   </component>
 </project>
