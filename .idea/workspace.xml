@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Add image, csv file">
+    <list default="true" id="d4291ea2-0aa8-4629-baf6-29be5148cf3f" name="Changes" comment="Added interactive map and a few other plots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/avg_price_by_borough.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/avg_price_by_borough.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/bldgclass_prices.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/bldgclass_prices.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/nyc_housing_map_interactive.html" beforeDir="false" afterPath="$PROJECT_DIR$/images/nyc_housing_map_interactive.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook/nyc_housing_analysis.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,18 +49,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.check_file.executor": "Run",
-    "Python.exploratory_analysis.executor": "Run",
-    "Python.nyc_housing_analysis.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Tanishka__interactive",
-    "ignore.virus.scanning.warn.message": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.check_file.executor&quot;: &quot;Run&quot;,
+    &quot;Python.exploratory_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.nyc_housing_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Tanishka__interactive&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -131,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770495843164</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added interactive map and a few other plots">
+      <option name="closed" value="true" />
+      <created>1770499297554</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770499297554</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -141,6 +150,7 @@
     <MESSAGE value="created graphs" />
     <MESSAGE value="Fix image creation" />
     <MESSAGE value="Add image, csv file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add image, csv file" />
+    <MESSAGE value="Added interactive map and a few other plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added interactive map and a few other plots" />
   </component>
 </project>
