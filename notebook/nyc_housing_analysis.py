@@ -26,9 +26,16 @@ print("\nDataset Info:")
 print(df.info())
 
 # data cleaning
-useful_col = ["borough_y", "sale_price", "yearbuilt", "lotarea", "bldgarea", "resarea", "comarea",
+useful_col = ["borough_y", "sale_price", "zip_code", "yearbuilt", "lotarea", "bldgarea", "resarea", "comarea",
               "unitsres", "unitstotal", "numfloors", "latitude", "longitude", "landuse", "bldgclass",
               "building_age"]
 df = df[useful_col]
 print(df.isnull().sum())
 df["resarea"] = df["resarea"].fillna(0)
+
+#Creating table
+df_table = df[useful_col]
+
+df_table.to_csv("../nyc_housing_important_columns.csv", index=False)
+
+print("New CSV file created: nyc_housing_important_columns.csv")
