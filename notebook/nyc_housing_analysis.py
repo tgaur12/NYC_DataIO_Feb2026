@@ -98,29 +98,130 @@ plt.show()
 
 
 # plots price vs property size
-# we use resarea and bldgarea to see if bigger buildings cost more
-plt.figure(figsize=(8,5))
-sns.scatterplot(x="bldgarea", y="sale_price", data=df, alpha=0.3)
-plt.title("Sale Price vs Building Area")
+# Sale Price vs Building Area - equal width bins
+# Let's use bins of 5,000 sq ft each (you can adjust this number)
+
+bin_width = 5000
+max_area = 100000  # cap for visualization (most buildings are much smaller)
+
+# Create equal-width bins
+bins_area = list(range(0, max_area + bin_width, bin_width))
+labels_area = [f"{i}-{i+bin_width}" for i in bins_area[:-1]]
+
+df['area_bin'] = pd.cut(df['bldgarea'], bins=bins_area, labels=labels_area, include_lowest=True)
+
+# Average sale price per bin
+avg_price_by_area = df.groupby('area_bin', observed=True)['sale_price'].mean()
+
+# Count how many properties are in each bin (good to know)
+counts = df['area_bin'].value_counts().sort_index()
+
+print("Number of properties per area bin:")
+print(counts)
+
+plt.figure(figsize=(14, 6))
+
+# Plot bars without hue (avoids extra legend space that shifts things)
+ax = sns.barplot(
+    x=avg_price_by_area.index,
+    y=avg_price_by_area.values / 1_000_000,
+    color="skyblue",          # single color or use palette without hue
+    # palette="viridis",      # if you want colors but no hue
+    width=0.85
+)
+
+# Critical: set ticks EXACTLY at bar centers
+n_bins = len(avg_price_by_area)
+ax.set_xticks(range(n_bins))  # positions 0,1,2,... under each bar
+
+# Center labels, rotate, smaller font
+ax.set_xticklabels(
+    avg_price_by_area.index,
+    rotation=60,
+    ha='center',          # ← change to 'center' instead of 'right'
+    va='top',             # slight vertical adjustment
+    fontsize=9
+)
+
+# Optional: add count labels above bars for context
+counts = df['area_bin'].value_counts().sort_index()
+for i, (price, count) in enumerate(zip(avg_price_by_area.values / 1_000_000, counts)):
+    ax.text(i, price + 0.05, f'n={count}', ha='center', va='bottom', fontsize=8, color='black')
+
+plt.title("Average Sale Price by Building Area (5,000 sq ft bins)")
 plt.xlabel("Building Area (sq ft)")
-plt.ylabel("Sale Price ($)")
-# gets rid of extreme outliers
-plt.ylim(0, 5_000_000)
+plt.ylabel("Average Sale Price (Million $)")
 plt.tight_layout()
-plt.savefig("../images/price_vs_bldgarea.png")
+plt.savefig("../images/avg_price_by_area_equal_bins_centered.png", dpi=150)
 plt.show()
 
+# Optional cleanup
+df = df.drop(columns=['area_bin'], errors='ignore')
+
 # building age vs sale price
-# newer buildings likely to be more expensive but location would impact this?
-plt.figure(figsize=(8,5))
-sns.scatterplot(x="building_age", y="sale_price", data=df, alpha=0.3)
-plt.title("Sale Price vs Building Age")
-plt.xlabel("Building Age (Years)")
-plt.ylabel("Sale Price ($)")
-plt.ylim(0, 5_000_000)
+# Sale Price vs Building Age - equal width bins (every 20 years)
+
+bin_width_age = 20
+max_age = 200
+
+bins_age = list(range(0, max_age + bin_width_age, bin_width_age))
+labels_age = [f"{i}-{i+bin_width_age-1}" for i in bins_age[:-1]]
+
+df['age_bin'] = pd.cut(df['building_age'], bins=bins_age, labels=labels_age, include_lowest=True)
+
+avg_price_by_age = df.groupby('age_bin', observed=True)['sale_price'].mean()
+
+counts_age = df['age_bin'].value_counts().sort_index()
+
+print("Number of properties per age bin:")
+print(counts_age)
+
+plt.figure(figsize=(12, 6))
+
+# Plot without hue to avoid any padding shifts
+ax = sns.barplot(
+    x=avg_price_by_age.index,
+    y=avg_price_by_age.values / 1_000_000,
+    color="#d62728",               # single nice color (or use "magma" but without hue)
+    width=0.85
+)
+
+# Get the exact center of each bar (this is the gold-standard fix)
+bar_centers = [p.get_x() + p.get_width() / 2 for p in ax.patches]
+
+# Set ticks to the **real geometric center** of each bar
+ax.set_xticks(bar_centers)
+
+# Labels centered, rotated, no misalignment
+ax.set_xticklabels(
+    avg_price_by_age.index,
+    rotation=45,
+    ha='center',          # center the text horizontally
+    va='top',
+    fontsize=10
+)
+
+# Optional: add count labels above bars
+for i, (price, count) in enumerate(zip(avg_price_by_age.values / 1_000_000, counts_age)):
+    ax.text(
+        bar_centers[i],
+        price + 0.08,
+        f'n={int(count)}',
+        ha='center',
+        va='bottom',
+        fontsize=9,
+        color='black'
+    )
+
+plt.title("Average Sale Price by Building Age (20-year bins)")
+plt.xlabel("Building Age (years)")
+plt.ylabel("Average Sale Price (Million $)")
 plt.tight_layout()
-plt.savefig("../images/building_age_vs_price.png")
+plt.savefig("../images/avg_price_by_age_equal_bins_perfect.png", dpi=150)
 plt.show()
+
+# Cleanup
+df = df.drop(columns=['age_bin'], errors='ignore')
 
 # top building classes
 top_classes = df.groupby("bldgclass").agg({
@@ -132,11 +233,27 @@ top_classes = top_classes[top_classes[("sale_price", "count")] >= 50]  # Reliabl
 print("Top 10 Building Classes by Avg Price:\n", top_classes.head(10))
 
 top_classes.plot(kind="bar", y=("sale_price", "mean"), figsize=(12,6))
-plt.title("Price by Building Type (A9=Co-ops, C0=Elevators)")
+plt.title("Price by Building Type")
 plt.ylabel("Avg Sale Price")
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig("../images/bldgclass_prices.png", dpi=300, bbox_inches='tight')
+plt.figtext(
+    0.98, 0.8,  # bottom-left position (adjust as needed)
+    "Building Class Guide:\n"
+    "A = Single Family Homes\n"
+    "B = Two Family Homes\n"
+    "C = Condos\n"
+    "D = Elevator Apartments\n"
+    "E = Warehouse/Factories/Industrial\n"
+    "G = Garages/Gas Stations/Storage\n"
+    "K = Store Buildings\n"
+    "S = Mixed-Use\n",
+    fontsize=9,
+    ha='right',
+    va = 'top',
+    bbox=dict(facecolor='white', alpha=0.8, edgecolor='gray'),
+)
+plt.savefig("../images/bldgclass_prices_with_legend.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 #creating a table
