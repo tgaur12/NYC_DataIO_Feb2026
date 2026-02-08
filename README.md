@@ -35,14 +35,17 @@ The repository is organized as follows:
 
 ```text
 NYC_DataIO_Feb2026/
-│── nyc_housing_base.csv
 │── README.md
-│── nyc_housing_important_columns.csv
-│── sale_price_correlation.csv
+│── REPORT.md
 │
 ├── notebook/
 │   └── nyc_housing_analysis.py
 │
+├── data/
+|    ├── nyc_housing_base.csv
+|    ├── nyc_housing_important_columns.csv
+|    └── sale_price_correlation.csv
+|
 └── images/
     ├── avg_price_by_borough.png
     ├── price_vs_bldgarea.png
