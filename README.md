@@ -68,7 +68,13 @@ Make sure you have Python installed, then install the dependencies:
 pip install pandas numpy matplotlib seaborn plotly
 pip install --upgrade kaleido
 ```
-Step 2: Run the Analysis Script
+
+Step 2: Clone the git repository
+```bash
+git clone https://github.com/tgaur12/NYC_DataIO_Feb2026.git
+```
+
+Step 3: Run the Analysis Script
 
 Navigate to the notebook folder and run:
 
